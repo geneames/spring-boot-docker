@@ -5,10 +5,22 @@
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
  * User Manual available at https://docs.gradle.org/7.1/userguide/building_java_projects.html
  */
+buildscript{
+    repositories {
+        // Use Maven Central for resolving dependencies.
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4+'
+    }
+}
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
+    id 'org.springframework.boot' version '2.5.6'
     id 'application'
+    id 'java'
 }
 
 repositories {
@@ -16,12 +28,22 @@ repositories {
     mavenCentral()
 }
 
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:'
+    testImplementation 'com.h2database:h2:1.4.199'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1-jre'
+    implementation 'org.springframework.boot:spring-boot-starter:'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest:'
+    implementation 'com.h2database:h2:1.4.199'
+
 }
 
 application {

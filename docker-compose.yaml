@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  shuffle:
+    image: 'sema/shuffle:latest'
+    container_name: 'aces-high'
+    environment:
+      - 'SPRING_PROFILES_ACTIVE=random-shuffle'
+    ports:
+      - '8081:8080'
