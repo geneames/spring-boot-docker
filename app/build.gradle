@@ -16,6 +16,9 @@ repositories {
 }
 
 dependencies {
+    // Compile Time Dependencies
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+
     // Use JUnit Jupiter for testing.
     testImplementation libs.junit.jupiter
 

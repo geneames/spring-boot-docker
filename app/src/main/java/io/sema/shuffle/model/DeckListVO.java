@@ -1,6 +1,11 @@
 package io.sema.shuffle.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class DeckListVO {
 
     private String deckName;
@@ -9,11 +14,4 @@ public class DeckListVO {
         this.deckName = deckName;
     }
 
-    public String getDeckName() {
-        return deckName;
-    }
-
-    public void setDeckName(String deckName) {
-        this.deckName = deckName;
-    }
 }

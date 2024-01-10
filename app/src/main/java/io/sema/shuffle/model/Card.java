@@ -1,11 +1,16 @@
 package io.sema.shuffle.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serializable;
 
 @Entity(name = "CARDS")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"parent_deck_name","suit","face"}))
+@EqualsAndHashCode
+@ToString
 public class Card implements Serializable {
 
     @Id
@@ -39,6 +44,7 @@ public class Card implements Serializable {
         this.face = face;
     }
 
+    @JsonGetter
     public String faceValue(){
         return String.format("%s-%s", this.face, this.suit);
     }
@@ -47,21 +53,5 @@ public class Card implements Serializable {
         this.parentDeck = parentDeck;
 
          return this;
-    }
-
-    @Override
-    public int hashCode() {
-        return  this.parentDeck.getDeckName().hashCode() + this.suit.hashCode() + this.face.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        Card otherCard = (Card)obj;
-        return this.toString().equals(otherCard.toString());
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s-%s:Deck(%s)", this.face, this.suit, this.parentDeck.getDeckName());
     }
 }

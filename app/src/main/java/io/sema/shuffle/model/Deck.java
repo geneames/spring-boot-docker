@@ -1,6 +1,10 @@
 package io.sema.shuffle.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,6 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 
 @Entity(name = "DECKS")
+@EqualsAndHashCode
+@ToString
 public class Deck implements Serializable {
 
     @Id
@@ -18,7 +24,7 @@ public class Deck implements Serializable {
     @OrderColumn(name = "order_idx")
     private List<Card> cards = new ArrayList<>();
 
-    public List<Card> getCards(){
+     public List<Card> getCards(){
         return this.cards;
     }
 
@@ -37,23 +43,5 @@ public class Deck implements Serializable {
 
     void setName(String deckName){
         this.deckName = deckName;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Deck Name: %s", this.deckName);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.deckName.hashCode() + this.cards.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        Deck extDeck = (Deck)obj;
-
-        return   new HashSet<>(extDeck.getCards()).containsAll(this.cards) &&
-                            extDeck.getDeckName().equals(this.deckName);
     }
 }

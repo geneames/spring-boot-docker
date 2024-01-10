@@ -23,7 +23,6 @@ import java.util.Optional;
 class DeckServiceImpl implements DeckService {
 
     final private Logger logger = LoggerFactory.getLogger(DeckService.class);
-
     final private Shuffler shuffler;
     final private DeckRepository deckRepo;
 

@@ -62,7 +62,7 @@ public class DeckRestController {
     }
 
     @PutMapping(value = "{deckName}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Deck> createNewDeck(@PathVariable String deckName){
+    public ResponseEntity<Deck> createNewDeck(@PathVariable("deckName") String deckName){
         Deck responseDeck;
         ResponseEntity<Deck> response;
 
@@ -86,7 +86,7 @@ public class DeckRestController {
      * @return Deck
      */
     @PostMapping(value = "/{deckName}/shuffle", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> shuffleDeck(@PathVariable String deckName){
+    public ResponseEntity<?> shuffleDeck(@PathVariable("deckName") String deckName){
 
         ResponseEntity<?> response;
 
@@ -109,7 +109,7 @@ public class DeckRestController {
     }
 
     @GetMapping(value = "{deckName}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getDeck(@PathVariable(value = "deckName") String deckName){
+    public ResponseEntity<?> getDeck(@PathVariable("deckName") String deckName){
         logger.debug("Getting deck {}", deckName);
         ResponseEntity<?> response;
 
@@ -118,7 +118,7 @@ public class DeckRestController {
             response = new ResponseEntity<Deck>(retrievedDeck, HttpStatus.OK);
         }
         else{
-            response = new ResponseEntity<String>("{}", HttpStatus.OK);
+            response = new ResponseEntity<String>("{}", HttpStatus.NOT_FOUND);
         }
 
         return response;
