@@ -47,6 +47,3 @@ tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
-
-compileJava.options.fork = true
-compileJava.options.forkOptions.executable = '/Users/geneames/Library/Java/JavaVirtualMachines/corretto-17.0.9/Contents/Home/bin/javac'
