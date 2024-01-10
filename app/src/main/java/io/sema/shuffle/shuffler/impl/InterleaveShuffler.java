@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
- * Using a divide and conquer method, this interleave
+ * Using a divide and conquer method, this interleaves
  * shuffle algorithm simulates a perfect
  * hand shuffle, taking a card from half of
  * the deck and interlacing it with a card
