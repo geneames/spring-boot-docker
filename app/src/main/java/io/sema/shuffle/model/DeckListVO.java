@@ -1,11 +1,10 @@
 package io.sema.shuffle.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Setter
-@Getter
+@EqualsAndHashCode
+@ToString
 public class DeckListVO {
 
     private String deckName;
@@ -14,4 +13,11 @@ public class DeckListVO {
         this.deckName = deckName;
     }
 
+    public String getDeckName() {
+        return deckName;
+    }
+
+    public void setDeckName(String deckName) {
+        this.deckName = deckName;
+    }
 }
