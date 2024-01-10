@@ -3,6 +3,7 @@ package io.sema.shuffle.shuffler.impl;
 import io.sema.shuffle.model.Card;
 import io.sema.shuffle.model.Deck;
 import io.sema.shuffle.shuffler.Shuffler;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * the shuffle process.
  */
 @Component
+@Profile("interleave-shuffle")
 public class InterleaveShuffler implements Shuffler {
 
     @Override

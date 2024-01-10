@@ -1,8 +1,7 @@
 package io.sema.shuffle.model;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "CARDS")
@@ -40,7 +39,6 @@ public class Card implements Serializable {
         this.face = face;
     }
 
-    @JsonGetter
     public String faceValue(){
         return String.format("%s-%s", this.face, this.suit);
     }

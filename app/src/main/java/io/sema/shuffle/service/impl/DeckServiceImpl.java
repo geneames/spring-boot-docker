@@ -1,5 +1,6 @@
 package io.sema.shuffle.service.impl;
 
+import io.sema.shuffle.exception.DeckNotFoundException;
 import io.sema.shuffle.model.Deck;
 import io.sema.shuffle.model.DeckFactory;
 import io.sema.shuffle.model.DeckListVO;
@@ -16,18 +17,23 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * This component manages all of the data operations.
+ * This component manages all data operations.
  */
 @Service
 class DeckServiceImpl implements DeckService {
 
     final private Logger logger = LoggerFactory.getLogger(DeckService.class);
 
-    @Autowired
-    private Shuffler shuffler;
+    final private Shuffler shuffler;
+    final private DeckRepository deckRepo;
 
-    @Autowired
-    private DeckRepository deckRepo;
+    public DeckServiceImpl(
+            Shuffler shuffler,
+            DeckRepository deckRepo){
+
+        this.shuffler = shuffler;
+        this.deckRepo = deckRepo;
+    }
 
     @Override
     public Deck createDeck(String deckName) {
@@ -56,7 +62,7 @@ class DeckServiceImpl implements DeckService {
     @Override
     public Deck getDeck(String deckName) {
         Optional<Deck> deckOptional = this.deckRepo.findById(deckName);
-        return deckOptional.orElseGet(() -> this.deckRepo.findById(deckName).get());
+        return deckOptional.orElseThrow(() -> new DeckNotFoundException(deckName));
     }
 
     @Override
@@ -66,18 +72,12 @@ class DeckServiceImpl implements DeckService {
 
     @Override
     public Deck shuffleDeck(String deckName) {
-        Deck deck = null;
         this.logger.debug("Shuffling deck {}", deckName);
 
         // Retrieve Deck
-        if(this.deckRepo.existsById(deckName)) {
-            deck = this.deckRepo.getById(deckName);
-        }
-        else {
-            throw new RuntimeException(String.format("Deck named '%s' does not exist in database.", deckName));
-        }
+        Deck deck = this.getDeck(deckName);
 
-        // Shuffle deck
+        // Retrieve and Shuffle deck
         this.shuffler.shuffle(deck);
 
         // Persist shuffled deck

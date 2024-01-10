@@ -1,8 +1,6 @@
 package io.sema.shuffle.model;
 
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-
 public class DeckListVO {
 
     private String deckName;
@@ -11,7 +9,6 @@ public class DeckListVO {
         this.deckName = deckName;
     }
 
-    @JsonGetter
     public String getDeckName() {
         return deckName;
     }

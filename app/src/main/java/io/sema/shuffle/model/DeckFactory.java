@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 public abstract class DeckFactory {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(DeckFactory.class);
-    private final static String SUITS[] = {"Spades","Diamonds","Clubs","Hearts"};
-    private final static String FACES[] = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+    private final static String[] SUITS = {"Spades","Diamonds","Clubs","Hearts"};
+    private final static String[] FACES = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
 
 
     /**

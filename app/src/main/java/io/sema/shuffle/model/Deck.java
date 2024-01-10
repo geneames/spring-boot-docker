@@ -1,8 +1,10 @@
 package io.sema.shuffle.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Entity(name = "DECKS")
@@ -51,8 +53,7 @@ public class Deck implements Serializable {
     public boolean equals(Object obj) {
         Deck extDeck = (Deck)obj;
 
-        boolean isEqual =   extDeck.getCards().containsAll(this.cards) &&
+        return   new HashSet<>(extDeck.getCards()).containsAll(this.cards) &&
                             extDeck.getDeckName().equals(this.deckName);
-        return isEqual;
     }
 }

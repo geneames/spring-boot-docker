@@ -36,9 +36,11 @@ import java.util.List;
 public class DeckRestController {
 
     private final Logger logger = LoggerFactory.getLogger(DeckRestController.class);
+    final private DeckService deckService;
 
-    @Autowired
-    private DeckService deckService;
+    public DeckRestController(DeckService deckService){
+        this.deckService = deckService;
+    }
 
     /**
      * Creates a new card deck with the given
@@ -59,7 +61,7 @@ public class DeckRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping(value = "/{deckName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "{deckName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Deck> createNewDeck(@PathVariable String deckName){
         Deck responseDeck;
         ResponseEntity<Deck> response;
@@ -100,13 +102,13 @@ public class DeckRestController {
         return response;
     }
 
-    @RequestMapping( produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<DeckListVO>> getDeckNames(){
         List<DeckListVO> decks = this.deckService.getDeckList();
         return new ResponseEntity<>(decks, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{deckName}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    @GetMapping(value = "{deckName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getDeck(@PathVariable(value = "deckName") String deckName){
         logger.debug("Getting deck {}", deckName);
         ResponseEntity<?> response;
