@@ -20,7 +20,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.30'
 
     // Use JUnit Jupiter for testing.
-    testImplementation libs.junit.jupiter
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
@@ -43,7 +43,20 @@ application {
     mainClass = 'io.sema.shuffle.App'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'io.sema.shuffle.App'
+        )
+    }
+}
+
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.register('copyLibs', Copy) {
+    from configurations.compile
+    into 'libs'
 }

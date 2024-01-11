@@ -9,9 +9,12 @@ RUN gradle build --no-daemon
 
 EXPOSE 8080
 
-RUN mkdir /app
+RUN mkdir -p /app/libs
 
 COPY $WORKDIR/app/build/libs/app.jar /app/app.jar
 
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+RUN tar -xvf build/distributions/spring-docker.tar -C /app/libs/
 
+ENV CLASSPATH="/app/libs/spring-docker/lib/*:/app/app.jar"
+
+ENTRYPOINT java -cp "$CLASSPATH" "io.sema.shuffle.App"

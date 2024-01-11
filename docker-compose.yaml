@@ -5,6 +5,6 @@ services:
     image: 'sema/shuffle:latest'
     container_name: 'aces-high'
     environment:
-      - 'SPRING_PROFILES_ACTIVE=random-shuffle'
+      - 'SPRING_PROFILES_ACTIVE=interleave-shuffle'
     ports:
-      - '8081:8080'
+      - '127.0.0.1:8081:8080'
