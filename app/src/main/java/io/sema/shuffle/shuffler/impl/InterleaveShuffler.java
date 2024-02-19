@@ -3,6 +3,7 @@ package io.sema.shuffle.shuffler.impl;
 import io.sema.shuffle.model.Card;
 import io.sema.shuffle.model.Deck;
 import io.sema.shuffle.shuffler.Shuffler;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * is used to determine which half of the deck starts
  * the shuffle process.
  */
+
 @Component
+@Primary
 @Profile("interleave-shuffle")
 public class InterleaveShuffler implements Shuffler {
 

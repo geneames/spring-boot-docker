@@ -22,8 +22,8 @@ import java.util.concurrent.ThreadLocalRandom;
  * method, but the intent of the exercise to demonstrate the
  * ability to implement an external algorithm.
  */
+
 @Component
-@Primary
 @Profile("random-shuffle")
 public class RandomShuffler implements Shuffler {
 

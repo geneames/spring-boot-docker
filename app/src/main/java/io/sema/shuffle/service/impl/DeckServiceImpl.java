@@ -20,7 +20,7 @@ import java.util.Optional;
  * This component manages all data operations.
  */
 @Service
-class DeckServiceImpl implements DeckService {
+public class DeckServiceImpl implements DeckService {
 
     final private Logger logger = LoggerFactory.getLogger(DeckService.class);
     final private Shuffler shuffler;
