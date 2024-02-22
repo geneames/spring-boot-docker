@@ -1,20 +1,19 @@
 package io.sema.shuffle.model;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Entity(name = "DECKS")
 @EqualsAndHashCode
 @ToString
 public class Deck implements Serializable {
+
+    public Deck(){}
 
     @Id
     @Column(name = "deck_name", nullable = false, updatable = false)
@@ -43,5 +42,20 @@ public class Deck implements Serializable {
 
     void setName(String deckName){
         this.deckName = deckName;
+    }
+
+    public Deck clone() {
+        Deck clonedDeck =  new Deck();
+
+        for(Card card : this.cards){
+            Card newCard = new Card();
+            newCard.setFace(card.getFace());
+            newCard.setSuit(card.getSuit());
+            newCard.setParentDeck(this);
+
+            clonedDeck.addCard(newCard);
+        }
+
+        return clonedDeck;
     }
 }
