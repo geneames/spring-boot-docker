@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Stop output INFO at start -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <include resource="org/springframework/boot/logging/logback/console.xml"/>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <!-- Logging Levels for Local, Development, and Test    -->
+    <springProfile name="local | development | test">
+        <root level="WARN"/>
+        <logger name="org.springframework" level="error"/>
+        <logger name="com.zaxxer.hikari" level="info"/>
+        <logger name="io.sema" level="debug"/>
+    </springProfile>
+    <!-- Logging Levels for Stage and Production Environments   -->
+    <springProfile name="stage | production">
+        <root level="WARN"/>
+<!--        <logger name="org.springframework" level="warn"/>-->
+<!--        <logger name="com.zaxxer.hikari" level="warn"/>-->
+    </springProfile>
+</configuration>

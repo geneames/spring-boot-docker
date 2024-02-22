@@ -1,7 +1,5 @@
 package io.sema.shuffle.exception;
 
-import java.text.MessageFormat;
-
 public class DeckNotFoundException extends RuntimeException {
 
     final private String notFoundDeckName;
