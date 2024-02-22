@@ -1,6 +1,6 @@
 package io.sema.shuffle.service.impl;
 
-import io.sema.shuffle.exception.DeckNotFoundException;
+import io.sema.shuffle.controller.exception.DeckNotFoundException;
 import io.sema.shuffle.model.Deck;
 import io.sema.shuffle.model.DeckFactory;
 import io.sema.shuffle.model.DeckListVO;
@@ -9,6 +9,7 @@ import io.sema.shuffle.service.DeckService;
 import io.sema.shuffle.shuffler.Shuffler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Optional;
 /**
  * This component manages all data operations.
  */
+@Service
 public class DeckServiceImpl implements DeckService {
 
     final private Logger logger = LoggerFactory.getLogger(DeckService.class);

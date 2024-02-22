@@ -1,4 +1,4 @@
-package io.sema.shuffle.exception;
+package io.sema.shuffle.controller.exception;
 
 public class DeckNotFoundException extends RuntimeException {
 

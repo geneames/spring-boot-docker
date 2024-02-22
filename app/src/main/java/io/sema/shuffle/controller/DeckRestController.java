@@ -112,13 +112,13 @@ public class DeckRestController {
         logger.debug("Getting deck {}", deckName);
         ResponseEntity<?> response;
 
-        if(this.deckService.deckExists(deckName)) {
+//        if(this.deckService.deckExists(deckName)) {
             Deck retrievedDeck = this.deckService.getDeck(deckName);
             response = new ResponseEntity<Deck>(retrievedDeck, HttpStatus.OK);
-        }
-        else{
-            response = new ResponseEntity<String>("{}", HttpStatus.NOT_FOUND);
-        }
+//        }
+//        else{
+//            response = new ResponseEntity<String>("{}", HttpStatus.NOT_FOUND);
+//        }
 
         return response;
     }
